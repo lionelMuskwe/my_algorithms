@@ -16,3 +16,17 @@ class CeaserCipher:
 
         return transformed_text
 
+
+    def testCeasarCipher():
+        # Testing encryption without rollover
+        encryptedText1 = CeaserCipher.encrypt("abc", 1)
+        decryptedText1 = CeaserCipher.decrypt(encryptedText1, 1)
+        assert encryptedText1 == "bcd", "Single key increment encryption is NOT working"
+        assert decryptedText1 == "abc", "Single key decrement decryption is NOT working"
+
+        # Testing encryption with rollover
+        encryptedText2 = CeaserCipher.encrypt("asyvx", 15)
+        decryptedText2 = CeaserCipher.decrypt(encryptedText2, 15)
+        assert encryptedText2 == "phnkm", "Modulus increment encryption is NOT working"
+        assert decryptedText2 == "asyvx", "Modulus key decrement decryption is NOT working"
+
